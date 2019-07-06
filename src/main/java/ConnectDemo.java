@@ -42,11 +42,10 @@ public class ConnectDemo {
                 "last_name varchar(30) not null," +
                 "email varchar(20))";
         stat.executeUpdate(create);
-        int count = stat.executeUpdate(
-                "INSERT INTO PERSON VALUES (1, 'ADAM', 'NOWAK','adam@op/pl')");
-        if (count == 1){
-            System.out.println("ROW ADDED");
-        }
+        stat.executeUpdate(
+                "INSERT INTO PERSON VALUES (1, 'ADAM', 'NOWAK','adam@o.pl')");
+        stat.executeUpdate("INSERT INTO PERSON VALUES (2, 'EWA', 'BBBB','ewa@op.pl')");
+        stat.executeUpdate("INSERT INTO PERSON VALUES (3, 'ROBERT', 'RRR','robert@gmail.com')");
         return stat;
     }
 
