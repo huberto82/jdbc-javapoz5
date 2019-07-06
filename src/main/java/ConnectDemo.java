@@ -38,14 +38,14 @@ public class ConnectDemo {
         Statement stat = con.createStatement();
         String create = "CREATE TABLE PERSON(" +
                 "id int primary key," +
-                "first_name varchar(20) not null," +
+                "first_name varchar(20)," +
                 "last_name varchar(30) not null," +
                 "email varchar(20))";
         stat.executeUpdate(create);
         stat.executeUpdate(
                 "INSERT INTO PERSON VALUES (1, 'ADAM', 'NOWAK','adam@o.pl')");
         stat.executeUpdate("INSERT INTO PERSON VALUES (2, 'EWA', 'BBBB','ewa@op.pl')");
-        stat.executeUpdate("INSERT INTO PERSON VALUES (3, 'ROBERT', 'RRR','robert@gmail.com')");
+        stat.executeUpdate("INSERT INTO PERSON VALUES (3, NULL, 'RRR','robert@gmail.com')");
         return stat;
     }
 

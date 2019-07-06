@@ -18,11 +18,29 @@ public class ResultSetDemo {
         StatementDemo.printResults(set);
         set.beforeFirst();
         StatementDemo.printResults(set);
+        set.beforeFirst();
+        System.out.println("Modyfikacja wiersza");
+        while(set.next()){
+            String name = set.getString("first_name");
+            System.out.println("------"+name);
+            if (set.wasNull()) {
+                System.out.println("UWAGA!!! W BAZIE first_name jest NULL");
+            } else {
+                if (name.equals("ADAM")) {
+                    set.updateString("email", "adam@gmail.com");
+                    set.updateRow();
+                }
+            }
+        }
+        set.beforeFirst();
+        System.out.println("BAZA PO AKTUALIZACJI");
+        StatementDemo.printResults(set);
+
         System.out.println("Usuwanie wiersza");
         set.beforeFirst();
         while(set.next()){
             String name = set.getString("first_name");
-            if (name.equals("ADAM")){
+            if ("ADAM".equals(name)){
                 set.deleteRow();
             }
         }
@@ -30,5 +48,23 @@ public class ResultSetDemo {
         set = stat.executeQuery();
         System.out.println("BAZA PO USUNIECIU WIERSZA");
         StatementDemo.printResults(set);
+
+        set.beforeFirst();
+        System.out.println("Dodanie nowej osoby");
+        while(set.next()){
+            if (set.isLast()){
+                set.moveToInsertRow();
+                set.updateString("first_name","KAROL");
+                set.updateString("last_name","KOROLCZYK");
+                set.updateString("email","karolus@koral.pl");
+                set.updateInt("id",5);
+                set.insertRow();
+            }
+        }
+        set.beforeFirst();
+        set = stat.executeQuery();
+        System.out.println("BAZA PO WSTAWIENIU WIERSZA");
+        StatementDemo.printResults(set);
+
     }
 }
