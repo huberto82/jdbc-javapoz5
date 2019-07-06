@@ -16,6 +16,9 @@ public class StatementDemo {
         ResultSet set = stat.executeQuery(query);
 
         printResults(set);
+        System.out.println("Przekazywanie parametrów zapytań w Statement");
+        System.out.println("Żeby zobaczyć różnicę wpisz: ADAM' OR 1=1 OR first_name='");
+        System.out.println("Wpisz imię:");
         String name = scanner.nextLine();
         set = stat.executeQuery("SELECT * FROM PERSON WHERE first_name = '" + name+ "'");
         printResults(set);
